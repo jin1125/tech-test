@@ -8,7 +8,7 @@ flake8:
 	docker compose exec app flake8 .
 
 mypy:
-		docker compose exec app mypy .
+	docker compose exec app mypy .
 
 format:
 	docker compose exec app black .
