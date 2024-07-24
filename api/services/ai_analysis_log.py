@@ -29,6 +29,12 @@ async def create_ai_analysis_log(
     Returns:
     - 保存したAIアナリティクスログ
     """
+    error_response_dict: dict = {
+        "success": False,
+        "message": "Error:E50012",
+        "estimated_data": {},
+    }
+
     async with httpx.AsyncClient() as client:
         try:
             logger.info(
@@ -66,15 +72,10 @@ async def create_ai_analysis_log(
                 }
             )
 
-            https_status_error_dict: dict = {
-                "success": False,
-                "message": "Error:E50012",
-                "estimated_data": {},
-            }
             return await _save_log_to_db(
                 db,
                 image_path,
-                https_status_error_dict,
+                error_response_dict,
                 request_timestamp,
                 response_timestamp,
             )
@@ -88,15 +89,10 @@ async def create_ai_analysis_log(
                 }
             )
 
-            request_error_dict: dict = {
-                "success": False,
-                "message": "Error:E50012",
-                "estimated_data": {},
-            }
             return await _save_log_to_db(
                 db,
                 image_path,
-                request_error_dict,
+                error_response_dict,
                 request_timestamp,
                 response_timestamp,
             )
