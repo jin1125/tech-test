@@ -54,13 +54,23 @@ async def create_ai_analysis_log(
             response.raise_for_status()
 
             response_dict: dict = response.json()
-            return await _save_log_to_db(
+            result: SaveAiAnalysisLogOut = await _save_log_to_db(
                 db,
                 image_path,
                 response_dict,
                 request_timestamp,
                 response_timestamp,
             )
+
+            logger.info(
+                {
+                    "action": "save",
+                    "status": "success",
+                    "image_path": image_path,
+                }
+            )
+
+            return result
         except httpx.HTTPStatusError as exc:
             logger.error(
                 {
