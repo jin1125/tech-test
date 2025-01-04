@@ -39,10 +39,10 @@ poetry_update:
 	docker compose exec app poetry update
 
 migrate:
-	alembic revision --autogenerate
+	docker compose exec app alembic revision --autogenerate
 
 db_upgrade:
-	alembic upgrade head
+	docker compose exec app alembic upgrade head
 
 db_downgrade:
-	alembic downgrade -1
+	docker compose exec app alembic downgrade -1
