@@ -31,7 +31,7 @@ target_metadata = Base.metadata
 config.set_main_option(
     "sqlalchemy.url",
     settings.get_async_url()
-    .set(host=settings.postgres_alembic_host, port=settings.postgres_port)
+    .set(host=settings.postgres_alembic_host, port=5432)
     .render_as_string(hide_password=False),
 )
 

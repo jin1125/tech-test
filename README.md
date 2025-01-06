@@ -11,7 +11,7 @@
 - Dockerコンテナを作成・起動
 
     ```commandline
-    docker compose -f compose.yml -f compose.test.yml up -d
+    docker compose up -d
     ```
 
 - `app`と`db`と`test_db`のコンテナが起動していることを確認
@@ -27,5 +27,5 @@
     ```
 
 - APIドキュメントを表示
-  
+
   http://localhost:8000/docs など
